@@ -1,6 +1,6 @@
 # Funbook App
 
-This is an example app built for the Managing State in React Native book.
+This is an example app built for the Simplifying State Management in React Native book.
 
 The `main` branch holds only the basic app setup.
 
