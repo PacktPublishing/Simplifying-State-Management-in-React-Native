@@ -8,6 +8,7 @@ import { Feed } from "./src/surfaces/Feed";
 import { Profile } from "./src/surfaces/Profile";
 import { Favorites } from "./src/surfaces/Favorites";
 import { AddPost } from "./src/surfaces/AddPost";
+import { Conversations } from "./src/surfaces/Conversations";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -15,10 +16,11 @@ const Tab = createBottomTabNavigator();
 function Home() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Feed" component={Feed} />
-      <Tab.Screen name="AddPost" component={AddPost} />
-      <Tab.Screen name="Favorites" component={Favorites} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name='Feed' component={Feed} />
+      <Tab.Screen name='Conversations' component={Conversations} />
+      <Tab.Screen name='AddPost' component={AddPost} />
+      <Tab.Screen name='Favorites' component={Favorites} />
+      <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
   );
 }
@@ -29,10 +31,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {!userLoggedIn ? (
-          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name='Login' component={Login} />
         ) : (
           <Stack.Screen
-            name="Home"
+            name='Home'
             component={Home}
             options={{ headerShown: false }}
           />
