@@ -6,6 +6,7 @@ On these pages you will find example data for the social media clone app - FunBo
 
 Each dataset is a representation of what would have been returned by an API endpoint in a real world app.
 The datasets included in this repository are:
+
 - a list of all users
 - a detailed profile of the main user
 - a list of items to be displayed on the main user's home surface
@@ -13,7 +14,6 @@ The datasets included in this repository are:
 - detail of message exchanges of the main user
 
 As this data is an example it is read-only
-
 
 #### List of users
 
@@ -29,11 +29,10 @@ The shape of this dataset is as follows:
 ]
 ```
 
-Link to the file:
-
+User names were copied from a sample data set from the following website: https://www.briandunning.com/sample-data/
+Link to the file: [users.json](users.json)
 
 #### Detailed profile of the user
-
 
 The shape of this dataset is as follows:
 
@@ -64,7 +63,6 @@ The shape of this dataset is as follows:
 
 Link to the file:
 
-
 #### List of items on the home surface
 
 The shape of this dataset is as follows:
@@ -93,7 +91,6 @@ The shape of this dataset is as follows:
 
 Link to the file:
 
-
 #### List of conversations
 
 The shape of this dataset is as follows:
@@ -110,8 +107,6 @@ The shape of this dataset is as follows:
 ```
 
 Link to the file:
-
-
 
 #### Message exchange
 
