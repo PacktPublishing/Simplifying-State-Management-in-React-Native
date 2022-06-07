@@ -1,37 +1,135 @@
-## Welcome to GitHub Pages
+## Welcome to FunBook app data sets
 
-You can use the [editor on GitHub](https://github.com/PacktPublishing/Simplifying-State-Management-in-React-Native/edit/data/docs/index.md) to maintain and preview the content for your website in Markdown files.
+On these pages you will find example data for the social media clone app - FunBook. The data included in here is purely a work of fiction and an example of how responses from a real API may look like.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Dataset list
 
-### Markdown
+Each dataset is a representation of what would have been returned by an API endpoint in a real world app.
+The datasets included in this repository are:
+- a list of all users
+- a detailed profile of the main user
+- a list of items to be displayed on the main user's home surface
+- a list of conversations of the main user
+- detail of message exchanges of the main user
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+As this data is an example it is read-only
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+#### List of users
 
-- Bulleted
-- List
+The shape of this dataset is as follows:
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+[
+  {
+    id: *user Id*,
+    name: *user name*,
+    url: *URL for the avatar image*
+  }
+]
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+Link to the file:
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/PacktPublishing/Simplifying-State-Management-in-React-Native/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+#### Detailed profile of the user
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+The shape of this dataset is as follows:
+
+```
+{
+  {
+    id: *user Id*,
+    name: *user name*,
+    url: *URL for the avatar image*,
+    postsNumber: *number of posts*,
+    followersNumber: *number of followers*,
+    followsNumber: *number of users followed*,
+    addedImages[
+      {
+        id: *image id*,
+        url: *image url*
+      }
+    ],
+    likedImages: [
+      {
+        id: *image id*,
+        url: *image url*
+      }
+    ],
+  }
+}
+```
+
+Link to the file:
+
+
+#### List of items on the home surface
+
+The shape of this dataset is as follows:
+
+```
+{
+  avatarList: [
+    {
+      id: *user Id*,
+      url: *avatar url
+    }
+  ],
+  listOfitems: [
+    {
+      itemId: *item id*,
+      authorId: *user id of author*,
+      authorUrl: *user avatar URL*,
+      timeStamp: *time of publication*,
+      url: *image url*,
+      likes: *number of likes*,
+      conversations: *number of conversations*
+    }
+  ]
+}
+```
+
+Link to the file:
+
+
+#### List of conversations
+
+The shape of this dataset is as follows:
+
+```
+[
+  {
+    id: *user Id*,
+    name: *user name*,
+    url: *URL for the avatar image*
+    text: *message to be displayed*
+  }
+]
+```
+
+Link to the file:
+
+
+
+#### Message exchange
+
+The shape of this dataset is as follows:
+
+```
+{
+  id: *user Id*,
+  name: *user name*,
+  url: *URL for the avatar image*
+  messages: [
+    {
+      id: *message id*,
+      type: *message type - to or from*
+      text: *message text*
+    }
+  ]
+}
+```
+
+Link to the file:
