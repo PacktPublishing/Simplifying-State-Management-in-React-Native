@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "userId": 2,
+    "text": "Hey, how's it going?"
+  },
+  {
+    "id": 2,
+    "userId": 4,
+    "text": "Yo, are you going to the wedding?"
+  }
+]

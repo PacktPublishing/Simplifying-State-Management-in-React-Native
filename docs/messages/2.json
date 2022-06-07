@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "messages": [
+    {
+      "id": 1,
+      "type": "from",
+      "text": "hi Donette"
+    },
+    {
+      "id": 2,
+      "type": "from",
+      "text": "what's up?"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "messages": [
+    {
+      "id": 1,
+      "type": "to",
+      "text": "hello this is the first message"
+    },
+    {
+      "id": 2,
+      "type": "from",
+      "text": "well hello to you too"
+    }
+  ]
+}

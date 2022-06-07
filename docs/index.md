@@ -15,6 +15,19 @@ The datasets included in this repository are:
 
 As this data is an example it is read-only
 
+#### Login data
+
+The shape of this dataset is as follows:
+
+```
+{
+  userName: "Joe",
+  password: ""
+}
+```
+
+Link to the file: [login.json](login.json)
+
 #### List of users
 
 The shape of this dataset is as follows:
@@ -38,30 +51,26 @@ The shape of this dataset is as follows:
 
 ```
 {
-  {
-    id: *user Id*,
-    name: *user name*,
-    url: *URL for the avatar image*,
-    postsNumber: *number of posts*,
-    followersNumber: *number of followers*,
-    followsNumber: *number of users followed*,
-    addedImages[
-      {
-        id: *image id*,
-        url: *image url*
-      }
-    ],
-    likedImages: [
-      {
-        id: *image id*,
-        url: *image url*
-      }
-    ],
-  }
+  id: *user Id*,
+  postsNumber: *number of posts*,
+  followersNumber: *number of followers*,
+  followsNumber: *number of users followed*,
+  addedImages: [
+    {
+      id: *image id*,
+      url: *image url*
+    }
+  ],
+  likedImages: [
+    {
+      id: *image id*,
+      url: *image url*
+    }
+  ],
 }
 ```
 
-Link to the file:
+Link to the file: [john_doe.json](john_doe.json)
 
 #### List of items on the home surface
 
@@ -69,17 +78,10 @@ The shape of this dataset is as follows:
 
 ```
 {
-  avatarList: [
-    {
-      id: *user Id*,
-      url: *avatar url
-    }
-  ],
   listOfitems: [
     {
       itemId: *item id*,
       authorId: *user id of author*,
-      authorUrl: *user avatar URL*,
       timeStamp: *time of publication*,
       url: *image url*,
       likes: *number of likes*,
@@ -89,7 +91,7 @@ The shape of this dataset is as follows:
 }
 ```
 
-Link to the file:
+Link to the file: [home.json](home.json)
 
 #### List of conversations
 
@@ -99,14 +101,12 @@ The shape of this dataset is as follows:
 [
   {
     id: *user Id*,
-    name: *user name*,
-    url: *URL for the avatar image*
     text: *message to be displayed*
   }
 ]
 ```
 
-Link to the file:
+Link to the file: [conversations.json](conversations.json)
 
 #### Message exchange
 
@@ -115,8 +115,6 @@ The shape of this dataset is as follows:
 ```
 {
   id: *user Id*,
-  name: *user name*,
-  url: *URL for the avatar image*
   messages: [
     {
       id: *message id*,
@@ -127,4 +125,4 @@ The shape of this dataset is as follows:
 }
 ```
 
-Link to the file:
+Link to the file: [messages/1.json](messages/1.json)

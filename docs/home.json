@@ -1,0 +1,12 @@
+{
+  "listOfitems": [
+    {
+      "itemId": 3,
+      "authorId": 11,
+      "timeStamp": "time of publication",
+      "url": "image url",
+      "likes": "number of likes",
+      "conversations": "number of conversations"
+    }
+  ]
+}
