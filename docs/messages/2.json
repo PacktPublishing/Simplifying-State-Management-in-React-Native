@@ -3,13 +3,23 @@
   "messages": [
     {
       "id": 1,
-      "type": "from",
-      "text": "hi Donette"
+      "type": "to",
+      "text": "are you for real??? this sounds like a prank!"
     },
     {
       "id": 2,
+      "type": "to",
+      "text": "what??? when?"
+    },
+    {
+      "id": 3,
       "type": "from",
-      "text": "what's up?"
+      "text": "he went to the zoo.. to see the lions. and got bitten!"
+    },
+    {
+      "id": 4,
+      "type": "from",
+      "text": "did you hear about Rory?"
     }
   ]
 }

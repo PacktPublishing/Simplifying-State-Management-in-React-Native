@@ -4,12 +4,22 @@
     {
       "id": 1,
       "type": "to",
-      "text": "hello this is the first message"
+      "text": "see the lions or sea lions? also, is mac there with u??"
     },
     {
       "id": 2,
+      "type": "to",
+      "text": "when?"
+    },
+    {
+      "id": 3,
       "type": "from",
-      "text": "well hello to you too"
+      "text": "they are doing a feed thing event at the zoo.."
+    },
+    {
+      "id": 4,
+      "type": "from",
+      "text": "we r goin to c the lions"
     }
   ]
 }
