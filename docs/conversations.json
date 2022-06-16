@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "userId": 2,
+    "text": "Hey, how's it going?"
+  },
+  {
+    "id": 2,
+    "userId": 4,
+    "text": "Yo, are you going to the wedding?"
+  },
+  {
+    "id": 3,
+    "userId": 14,
+    "text": "seriously! i'm not even playing!"
+  },
+  {
+    "id": 4,
+    "userId": 8,
+    "text": "and then guess what happened... he started crying...!"
+  },
+  {
+    "id": 5,
+    "userId": 6,
+    "text": "so, you know."
+  },
+  {
+    "id": 6,
+    "userId": 16,
+    "text": "and then we went to this house, and it was really big, right? but like very cluttered, so it didn't look too good. se we got outta there"
+  },
+  {
+    "id": 7,
+    "userId": 6,
+    "text": "so, you know."
+  }
+]
