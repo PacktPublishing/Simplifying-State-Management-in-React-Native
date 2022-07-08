@@ -4,7 +4,7 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./src/surfaces/Login";
 import { Home } from "./src/surfaces/Home";
-import { AvatarModal } from "./src/surfaces/AvatarModal";
+import { UserDetailsModal } from "./src/surfaces/UserDetailsModal";
 import { ConversationsNavigation } from "./src/surfaces/ConversationsNavigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
@@ -75,10 +75,12 @@ export default function App() {
                 </>
               )}
             </Stack.Group>
-            <Stack.Group
-              screenOptions={{ presentation: "modal", headerShown: false }}
-            >
-              <Stack.Screen name='AvatarModal' component={AvatarModal} />
+            <Stack.Group screenOptions={{ presentation: "modal" }}>
+              <Stack.Screen
+                name='UserDetailsModal'
+                component={UserDetailsModal}
+                options={{ headerShown: false }}
+              />
             </Stack.Group>
           </Stack.Navigator>
         </NavigationContainer>

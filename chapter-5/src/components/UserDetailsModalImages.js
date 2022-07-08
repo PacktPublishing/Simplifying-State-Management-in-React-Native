@@ -3,12 +3,10 @@ import { View, FlatList, Pressable, Image } from "react-native";
 import { ListHeaderComponent } from "./ListHeaderComponent";
 import { UserListContext } from "../context";
 
-export const ListOfAvatars = ({ navigation }) => {
+export const UserDetailsModalImages = () => {
   const renderItem = ({ item }) => {
     return (
-      <Pressable
-        onPress={() => navigation.navigate("UserDetailsModal", { user: item })}
-      >
+      <Pressable onPress={() => console.log("hello")}>
         <Image
           style={{ height: 56, width: 56, borderRadius: 28, marginRight: 30 }}
           source={{
