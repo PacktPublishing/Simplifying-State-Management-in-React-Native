@@ -1,0 +1,25 @@
+{
+  "id": 2,
+  "messages": [
+    {
+      "id": 1,
+      "type": "to",
+      "text": "Don't start my timer"
+    },
+    {
+      "id": 2,
+      "type": "to",
+      "text": "I have embroidered Mark McGwire's 70 home run single-season T-shirts, $39, do you have any?"
+    },
+    {
+      "id": 3,
+      "type": "from",
+      "text": "Do you wear 'em"
+    },
+    {
+      "id": 4,
+      "type": "from",
+      "text": "I gotta give mine away"
+    }
+  ]
+}
