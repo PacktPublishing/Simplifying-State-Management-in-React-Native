@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { View, FlatList } from "react-native";
 import { ConversationItem } from "./ConversationItem";
-import AppLoading from "expo-app-loading";
-import { requestBase } from "../utils/constants";
 
-export const ListOfConvos = ({ navigation }) => {
-  const [conversationsList, setConversationsList] = useState(null);
-
-  async function fetchConversationData() {
-    const response = await fetch(requestBase + "/conversations.json");
-    setConversationsList(await response.json());
-  }
-
-  useEffect(() => {
-    fetchConversationData();
-  }, []);
-
-  if (!conversationsList) {
-    return <AppLoading />;
-  }
+export const ListOfConvos = ({ navigation, conversationsList }) => {
   const renderItem = ({ item }) => {
     return <ConversationItem navigation={navigation} item={item} />;
   };

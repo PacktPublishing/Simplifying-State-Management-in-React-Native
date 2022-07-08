@@ -6,7 +6,7 @@ import { UserDetailsModalImages } from "../components/UserDetailsModalImages";
 
 export const UserDetailsModal = ({ navigation, route }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, paddingTop: 30 }}>
       <View
         style={{
           width: 650,

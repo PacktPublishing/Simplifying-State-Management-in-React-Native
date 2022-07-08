@@ -1,14 +1,11 @@
 import React from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const ImageDetailsModal = ({ navigation, route }) => {
-  const headerHeight = useHeaderHeight();
-
   return (
-    <SafeAreaView style={{ flex: 1, paddingTop: headerHeight }}>
+    <SafeAreaView style={{ flex: 1, paddingTop: 30 }}>
       <View
         style={{
           width: 650,

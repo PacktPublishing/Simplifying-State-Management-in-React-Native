@@ -44,7 +44,7 @@ export const UserDetailsModalImages = () => {
       <FlatList
         data={imageList.listOfitems}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.itemId}
         horizontal
         showsHorizontalScrollIndicator={false}
         snapToInterval={width * 0.825}
