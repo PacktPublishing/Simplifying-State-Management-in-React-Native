@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Pressable, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { UserDetailsModalImages } from "../components/UserDetailsModalImages";
 
 export const UserDetailsModal = ({ navigation, route }) => {
   return (
@@ -106,6 +107,7 @@ export const UserDetailsModal = ({ navigation, route }) => {
           {route.params.user.name}
         </Text>
       </View>
+      <UserDetailsModalImages />
     </SafeAreaView>
   );
 };

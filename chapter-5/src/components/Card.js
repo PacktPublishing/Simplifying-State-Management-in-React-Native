@@ -1,8 +1,8 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Pressable } from "react-native";
 import { UserListContext } from "../context";
 
-export const Card = ({ item }) => {
+export const Card = ({ item, navigation }) => {
   return (
     <UserListContext.Consumer>
       {({ userList }) => {
@@ -10,7 +10,11 @@ export const Card = ({ item }) => {
           (user) => user.id === item.authorId
         );
         return (
-          <View>
+          <Pressable
+            onPress={() =>
+              navigation.navigate("ImageDetailsModal", { imageItem: item })
+            }
+          >
             <Image
               style={{
                 width: "100%",
@@ -50,7 +54,7 @@ export const Card = ({ item }) => {
                 </Text>
               </View>
             </View>
-          </View>
+          </Pressable>
         );
       }}
     </UserListContext.Consumer>

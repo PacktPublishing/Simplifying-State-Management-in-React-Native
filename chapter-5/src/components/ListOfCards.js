@@ -4,7 +4,7 @@ import { Card } from "../components/Card";
 import AppLoading from "expo-app-loading";
 import { requestBase } from "../utils/constants";
 
-export const ListOfCards = () => {
+export const ListOfCards = ({ navigation }) => {
   const [cardList, setCardList] = useState(null);
 
   async function fetchCardData() {
@@ -21,7 +21,7 @@ export const ListOfCards = () => {
   }
 
   const renderItem = ({ item }) => {
-    return <Card item={item} />;
+    return <Card item={item} navigation={navigation} />;
   };
   return (
     <View

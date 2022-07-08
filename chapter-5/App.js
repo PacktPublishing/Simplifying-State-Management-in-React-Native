@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./src/surfaces/Login";
 import { Home } from "./src/surfaces/Home";
 import { UserDetailsModal } from "./src/surfaces/UserDetailsModal";
+import { ImageDetailsModal } from "./src/surfaces/ImageDetailsModal";
 import { ConversationsNavigation } from "./src/surfaces/ConversationsNavigation";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppLoading from "expo-app-loading";
@@ -79,6 +80,11 @@ export default function App() {
               <Stack.Screen
                 name='UserDetailsModal'
                 component={UserDetailsModal}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name='ImageDetailsModal'
+                component={ImageDetailsModal}
                 options={{ headerShown: false }}
               />
             </Stack.Group>

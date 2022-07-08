@@ -16,7 +16,7 @@ export const Feed = ({ navigation }) => {
         }}
       />
       <ListOfAvatars navigation={navigation} />
-      <ListOfCards />
+      <ListOfCards navigation={navigation} />
     </SafeAreaView>
   );
 };
