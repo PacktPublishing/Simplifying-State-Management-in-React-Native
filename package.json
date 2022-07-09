@@ -26,5 +26,10 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "workspaces": [
+    "chapter-3",
+    "chapter-4",
+    "chapter-5"
+  ]
 }
