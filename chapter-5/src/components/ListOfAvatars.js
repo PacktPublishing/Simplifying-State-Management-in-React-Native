@@ -1,9 +1,10 @@
 import React from "react";
 import { View, FlatList, Pressable, Image } from "react-native";
 import { ListHeaderComponent } from "./ListHeaderComponent";
-import { UserListContext } from "../context";
+import { useUserList } from "../context";
 
 export const ListOfAvatars = ({ navigation }) => {
+  const userList = useUserList();
   const renderItem = ({ item }) => {
     return (
       <Pressable
@@ -19,28 +20,24 @@ export const ListOfAvatars = ({ navigation }) => {
     );
   };
   return (
-    <UserListContext.Consumer>
-      {({ userList }) => (
-        <View
-          style={{
-            zIndex: 100,
-            paddingVertical: 30,
-            paddingLeft: 20,
-            backgroundColor: "rgba(255,255,255, 0.85)",
-          }}
-        >
-          <FlatList
-            data={userList}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            horizontal
-            ListHeaderComponent={<ListHeaderComponent />}
-            showsHorizontalScrollIndicator={false}
-            snapToInterval={86}
-            decelerationRate='fast'
-          />
-        </View>
-      )}
-    </UserListContext.Consumer>
+    <View
+      style={{
+        zIndex: 100,
+        paddingVertical: 30,
+        paddingLeft: 20,
+        backgroundColor: "rgba(255,255,255, 0.85)",
+      }}
+    >
+      <FlatList
+        data={userList}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        horizontal
+        ListHeaderComponent={<ListHeaderComponent />}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={86}
+        decelerationRate='fast'
+      />
+    </View>
   );
 };
