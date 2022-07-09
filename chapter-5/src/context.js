@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { requestBase } from "./utils/constants";
 
 const UserListContext = React.createContext();
@@ -29,7 +29,34 @@ function useUserList() {
 
 export { UserListContextProvider, useUserList };
 
-export const ConversationContext = React.createContext();
+const ConversationContext = React.createContext();
+
+function ConversationContextProvider({ children }) {
+  const [conversationId, setConversationId] = useState(null);
+
+  return (
+    <ConversationContext.Provider
+      value={{
+        conversationId: conversationId,
+        setConversationId: setConversationId,
+      }}
+    >
+      {children}
+    </ConversationContext.Provider>
+  );
+}
+
+function useConversations() {
+  const context = React.useContext(ConversationContext);
+  if (context === undefined) {
+    throw new Error(
+      "useConversations must be used within a ConversationContextProvider"
+    );
+  }
+  return context;
+}
+
+export { ConversationContextProvider, useConversations };
 
 const FavoritedContext = React.createContext();
 
@@ -52,15 +79,13 @@ function FavoritedContextProvider({ children }) {
 
 function useFavorited(userLoggedIn) {
   let context;
-  useEffect(() => {
-    if (userLoggedIn) {
-      context = React.useContext(FavoritedContext);
-    }
-  }, [userLoggedIn]);
+  if (userLoggedIn) {
+    context = React.useContext(FavoritedContext);
+  }
 
   if (context === undefined) {
     throw new Error(
-      "useUserList must be used within a UserListContextProvider"
+      "useFavorited must be used within a FavoritedContextProvider"
     );
   }
   return context;
