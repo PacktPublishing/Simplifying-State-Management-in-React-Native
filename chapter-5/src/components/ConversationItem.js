@@ -4,15 +4,15 @@ import { useUserList, useConversations } from "../context";
 
 export const ConversationItem = ({ navigation, item }) => {
   const userList = useUserList();
-  const currentUser = userList.filter((user) => user.id === item.userId);
+  const currentUser = userList?.filter((user) => user.id === item.userId) || [];
   const { setConversationId } = useConversations();
 
   const onPressItem = (setConversationId, currentUser) => {
     setConversationId(item.id);
 
     navigation.navigate("Messages", {
-      name: currentUser[0].name,
-      avatar: currentUser[0].url,
+      name: currentUser[0]?.name,
+      avatar: currentUser[0]?.url,
     });
   };
   return (
@@ -48,14 +48,14 @@ export const ConversationItem = ({ navigation, item }) => {
               marginLeft: 2,
             }}
             source={{
-              uri: currentUser[0].url,
+              uri: currentUser[0]?.url,
             }}
           />
         </View>
       </View>
       <View>
         <Text style={{ fontSize: 14, paddingBottom: 9 }}>
-          {currentUser[0].name}
+          {currentUser[0]?.name}
         </Text>
         <Text style={{ color: "#656565", width: "65%" }}>{item.text}</Text>
       </View>

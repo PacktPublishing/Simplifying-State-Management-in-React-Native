@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { requestBase } from "./utils/constants";
 
 const UserListContext = React.createContext();
@@ -9,7 +9,13 @@ function UserListContextProvider({ children }) {
     const response = await fetch(requestBase + "/users.json");
     setUserList(await response.json());
   }
-  fetchUserData();
+
+  useEffect(() => {
+    if (!userList) {
+      fetchUserData();
+    }
+  }, [userList]);
+
   return (
     <UserListContext.Provider value={userList}>
       {children}
@@ -58,20 +64,63 @@ function useConversations() {
 
 export { ConversationContextProvider, useConversations };
 
+export const UserStateContext = React.createContext();
+
+export function useUserState() {
+  const context = React.useContext(UserStateContext);
+  if (context === undefined) {
+    throw new Error(
+      "useUserState must be used within a UserStateContextProvider"
+    );
+  }
+  return context;
+}
+
 const FavoritedContext = React.createContext();
+
+function favoritesReducer(state, action) {
+  switch (action.type) {
+    case "init_likes": {
+      return action.payload;
+    }
+    case "add_like": {
+      let updatedLikedImages = state.likedImages;
+      updatedLikedImages.push(action.payload);
+      return {
+        ...state,
+        likedImages: updatedLikedImages,
+      };
+    }
+    case "remove_like": {
+      return state;
+    }
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+}
 
 function FavoritedContextProvider({ children }) {
   const [loggedInData, setLoggedInData] = useState(null);
+  const [state, dispatch] = useReducer(favoritesReducer, loggedInData);
 
   async function fetchLoggedInData() {
     const response = await fetch(requestBase + "/john_doe.json");
     setLoggedInData(await response.json());
   }
 
-  fetchLoggedInData();
+  useEffect(() => {
+    if (!loggedInData) {
+      fetchLoggedInData();
+    } else {
+      dispatch({ type: "init_likes", payload: loggedInData });
+    }
+  }, [loggedInData]);
+
+  const value = { state, dispatch };
 
   return (
-    <FavoritedContext.Provider value={loggedInData}>
+    <FavoritedContext.Provider value={value}>
       {children}
     </FavoritedContext.Provider>
   );

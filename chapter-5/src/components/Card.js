@@ -4,7 +4,8 @@ import { useUserList } from "../context";
 
 export const Card = ({ item, navigation }) => {
   const userList = useUserList();
-  const currentUser = userList.filter((user) => user.id === item.authorId);
+  const currentUser =
+    userList?.filter((user) => user.id === item.authorId) || [];
   return (
     <Pressable
       onPress={() =>
@@ -38,12 +39,12 @@ export const Card = ({ item, navigation }) => {
             marginRight: 8,
           }}
           source={{
-            uri: currentUser[0].url,
+            uri: currentUser[0]?.url,
           }}
         />
         <View>
           <Text style={{ color: "#ffffff", fontSize: 12 }}>
-            {currentUser[0].name}
+            {currentUser[0]?.name}
           </Text>
           <Text style={{ color: "#D8D8D8", fontSize: 12 }}>2 hrs ago</Text>
         </View>
