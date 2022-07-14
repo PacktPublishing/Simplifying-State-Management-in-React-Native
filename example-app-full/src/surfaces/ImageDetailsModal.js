@@ -2,8 +2,11 @@ import React from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useUserState, useFavorited } from "../context";
 
 export const ImageDetailsModal = ({ navigation, route }) => {
+  const userState = useUserState();
+  const { dispatch } = useFavorited(userState);
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 30 }}>
       <View
@@ -94,6 +97,32 @@ export const ImageDetailsModal = ({ navigation, route }) => {
           <Text style={styles.headerText}>Follows</Text>
           <Text style={styles.stats}>128</Text>
         </View>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignSelf: "center",
+          marginTop: 40,
+          width: "40%",
+        }}
+      >
+        <Pressable
+          onPress={() =>
+            dispatch({
+              type: "add_like",
+              payload: {
+                id: route.params.imageItem.itemId + 23,
+                url: route.params.imageItem.url,
+              },
+            })
+          }
+        >
+          <Ionicons name='heart-outline' size={40} color='#000000' />
+        </Pressable>
+        <Pressable onPress={() => console.log("yo! pressed bookmark")}>
+          <Ionicons name='bookmark-outline' size={40} color='#000000' />
+        </Pressable>
       </View>
     </SafeAreaView>
   );
