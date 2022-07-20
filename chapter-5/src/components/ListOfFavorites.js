@@ -8,7 +8,7 @@ export const ListOfFavorites = ({ navigation }) => {
   const [cardList, setCardList] = useState(null);
 
   async function fetchCardData() {
-    const response = await fetch(requestBase + "/home.json");
+    const response = await fetch(requestBase + "/john_doe/likedImages.json");
     setCardList(await response.json());
   }
 
@@ -29,7 +29,7 @@ export const ListOfFavorites = ({ navigation }) => {
       }}
     >
       <FlatList
-        data={cardList.listOfitems}
+        data={cardList}
         renderItem={renderItem}
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}
