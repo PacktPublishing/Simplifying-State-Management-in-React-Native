@@ -20,6 +20,9 @@ import {
   UserStateContext,
 } from "./src/context";
 
+import store from "./store";
+import { Provider } from "react-redux";
+
 const Stack = createStackNavigator();
 
 const MyTheme = {
@@ -44,46 +47,48 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <UserStateContext.Provider value={userLoggedIn}>
-        <UserListContextProvider>
-          <FavoritedContextProvider>
-            <NavigationContainer theme={MyTheme}>
-              <Stack.Navigator>
-                <Stack.Group>
-                  {!userLoggedIn ? (
-                    <Stack.Screen name='Login' component={Login} />
-                  ) : (
-                    <>
-                      <Stack.Screen
-                        name='Home'
-                        component={Home}
-                        options={{ headerShown: false }}
-                      />
-                      <Stack.Screen
-                        name='ConversationsNav'
-                        component={ConversationsNavigation}
-                        options={{ headerShown: false }}
-                      />
-                    </>
-                  )}
-                </Stack.Group>
-                <Stack.Group screenOptions={{ presentation: "modal" }}>
-                  <Stack.Screen
-                    name='UserDetailsModal'
-                    component={UserDetailsModal}
-                    options={{ headerShown: false }}
-                  />
-                  <Stack.Screen
-                    name='ImageDetailsModal'
-                    component={ImageDetailsModal}
-                    options={{ headerShown: false }}
-                  />
-                </Stack.Group>
-              </Stack.Navigator>
-            </NavigationContainer>
-          </FavoritedContextProvider>
-        </UserListContextProvider>
-      </UserStateContext.Provider>
+      <Provider store={store}>
+        <UserStateContext.Provider value={userLoggedIn}>
+          <UserListContextProvider>
+            <FavoritedContextProvider>
+              <NavigationContainer theme={MyTheme}>
+                <Stack.Navigator>
+                  <Stack.Group>
+                    {!userLoggedIn ? (
+                      <Stack.Screen name='Login' component={Login} />
+                    ) : (
+                      <>
+                        <Stack.Screen
+                          name='Home'
+                          component={Home}
+                          options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                          name='ConversationsNav'
+                          component={ConversationsNavigation}
+                          options={{ headerShown: false }}
+                        />
+                      </>
+                    )}
+                  </Stack.Group>
+                  <Stack.Group screenOptions={{ presentation: "modal" }}>
+                    <Stack.Screen
+                      name='UserDetailsModal'
+                      component={UserDetailsModal}
+                      options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                      name='ImageDetailsModal'
+                      component={ImageDetailsModal}
+                      options={{ headerShown: false }}
+                    />
+                  </Stack.Group>
+                </Stack.Navigator>
+              </NavigationContainer>
+            </FavoritedContextProvider>
+          </UserListContextProvider>
+        </UserStateContext.Provider>
+      </Provider>
     </SafeAreaProvider>
   );
 }
