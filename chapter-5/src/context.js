@@ -84,12 +84,9 @@ function favoritesReducer(state, action) {
       return action.payload;
     }
     case "add_like": {
-      let updatedLikedImages = state.likedImages;
-      updatedLikedImages.push(action.payload);
-      return {
-        ...state,
-        likedImages: updatedLikedImages,
-      };
+      const newLikedImage = action.payload;
+      console.log("this happened!!!!!", newLikedImage);
+      return [...state, newLikedImage];
     }
     case "remove_like": {
       return state;
@@ -105,7 +102,7 @@ function FavoritedContextProvider({ children }) {
   const [state, dispatch] = useReducer(favoritesReducer, loggedInData);
 
   async function fetchLoggedInData() {
-    const response = await fetch(requestBase + "/john_doe.json");
+    const response = await fetch(requestBase + "/john_doe/likedImages.json");
     setLoggedInData(await response.json());
   }
 
@@ -118,6 +115,8 @@ function FavoritedContextProvider({ children }) {
   }, [loggedInData]);
 
   const value = { state, dispatch };
+
+  console.log("eeeeekhreeeeem", state);
 
   return (
     <FavoritedContext.Provider value={value}>
@@ -145,13 +144,25 @@ export { FavoritedContextProvider, useFavorited };
 const BookmarksContext = React.createContext();
 
 function BookmarksContextProvider({ children }) {
-  const [bookmarkId, setBookmarksId] = useState(null);
+  const [bookmarksData, setBookmarksData] = useState(null);
+  async function fetchBookmarkData() {
+    const response = await fetch(
+      requestBase + "/john_doe/bookmarkedImages.json"
+    );
+    setBookmarksData(await response.json());
+  }
+
+  useEffect(() => {
+    if (!bookmarksData) {
+      fetchBookmarkData();
+    }
+  }, [bookmarksData]);
 
   return (
     <BookmarksContext.Provider
       value={{
-        bookmarkId,
-        setBookmarksId,
+        bookmarksData,
+        setBookmarksData,
       }}
     >
       {children}

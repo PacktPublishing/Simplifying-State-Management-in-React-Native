@@ -5,15 +5,8 @@ import { useBookmarks, useUserState } from "../context";
 export const BookmarkedImages = () => {
   const imageWidth = useWindowDimensions().width * 0.4;
   const userState = useUserState();
-  const { state: bookmarksData } = useBookmarks(userState);
+  const { bookmarksData } = useBookmarks(userState);
   const flatListRef = useRef(null);
-
-  useEffect(() => {
-    const currentTopIndex = bookmarksData.length - 1;
-    flatListRef.current.scrollToIndex({
-      index: currentTopIndex,
-    });
-  }, [bookmarksData]);
 
   const ITEM_HEIGHT = 130;
 
