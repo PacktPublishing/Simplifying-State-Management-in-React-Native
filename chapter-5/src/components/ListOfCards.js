@@ -32,7 +32,7 @@ export const ListOfCards = ({ navigation }) => {
       }}
     >
       <FlatList
-        data={cardList.listOfitems}
+        data={cardList}
         renderItem={renderItem}
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}

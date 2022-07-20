@@ -43,8 +43,8 @@ function ConversationContextProvider({ children }) {
   return (
     <ConversationContext.Provider
       value={{
-        conversationId: conversationId,
-        setConversationId: setConversationId,
+        conversationId,
+        setConversationId,
       }}
     >
       {children}
@@ -141,3 +141,32 @@ function useFavorited(userLoggedIn) {
 }
 
 export { FavoritedContextProvider, useFavorited };
+
+const BookmarksContext = React.createContext();
+
+function BookmarksContextProvider({ children }) {
+  const [bookmarkId, setBookmarksId] = useState(null);
+
+  return (
+    <BookmarksContext.Provider
+      value={{
+        bookmarkId,
+        setBookmarksId,
+      }}
+    >
+      {children}
+    </BookmarksContext.Provider>
+  );
+}
+
+function useBookmarks() {
+  const context = React.useContext(BookmarksContext);
+  if (context === undefined) {
+    throw new Error(
+      "useBookmarks must be used within a BookmarksContextProvider"
+    );
+  }
+  return context;
+}
+
+export { BookmarksContextProvider, useBookmarks };

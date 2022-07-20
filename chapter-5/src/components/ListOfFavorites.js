@@ -19,6 +19,7 @@ export const ListOfFavorites = ({ navigation }) => {
   if (!cardList) {
     return <AppLoading />;
   }
+
   const renderItem = ({ item }) => {
     return <Card item={item} navigation={navigation} />;
   };
