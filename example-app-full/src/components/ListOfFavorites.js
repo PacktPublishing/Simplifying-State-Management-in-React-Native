@@ -2,23 +2,16 @@ import React, { useState, useEffect } from "react";
 import { View, FlatList } from "react-native";
 import { Card } from "../components/Card";
 import AppLoading from "expo-app-loading";
-import { requestBase } from "../utils/constants";
+import { useFavorited, useUserState } from "../context";
 
 export const ListOfFavorites = ({ navigation }) => {
-  const [cardList, setCardList] = useState(null);
+  const userState = useUserState();
+  const { state: favoritedData } = useFavorited(userState);
 
-  async function fetchCardData() {
-    const response = await fetch(requestBase + "/home.json");
-    setCardList(await response.json());
-  }
-
-  useEffect(() => {
-    fetchCardData();
-  }, []);
-
-  if (!cardList) {
+  if (!favoritedData) {
     return <AppLoading />;
   }
+
   const renderItem = ({ item }) => {
     return <Card item={item} navigation={navigation} />;
   };
@@ -29,11 +22,12 @@ export const ListOfFavorites = ({ navigation }) => {
       }}
     >
       <FlatList
-        data={cardList.listOfitems.reverse()}
+        data={favoritedData}
         renderItem={renderItem}
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}
         snapToInterval={312}
+        inverted
         decelerationRate='fast'
       />
     </View>

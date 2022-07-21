@@ -85,7 +85,6 @@ function favoritesReducer(state, action) {
     }
     case "add_like": {
       const newLikedImage = action.payload;
-      console.log("this happened!!!!!", newLikedImage);
       return [...state, newLikedImage];
     }
     case "remove_like": {
@@ -115,8 +114,6 @@ function FavoritedContextProvider({ children }) {
   }, [loggedInData]);
 
   const value = { state, dispatch };
-
-  console.log("eeeeekhreeeeem", state);
 
   return (
     <FavoritedContext.Provider value={value}>

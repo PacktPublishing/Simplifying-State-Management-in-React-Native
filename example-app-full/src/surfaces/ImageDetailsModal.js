@@ -111,10 +111,7 @@ export const ImageDetailsModal = ({ navigation, route }) => {
           onPress={() =>
             dispatch({
               type: "add_like",
-              payload: {
-                id: route.params.imageItem.itemId + 23,
-                url: route.params.imageItem.url,
-              },
+              payload: route.params.imageItem,
             })
           }
         >

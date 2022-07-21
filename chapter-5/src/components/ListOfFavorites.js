@@ -2,19 +2,15 @@ import React, { useState, useEffect } from "react";
 import { View, FlatList } from "react-native";
 import { Card } from "../components/Card";
 import AppLoading from "expo-app-loading";
-import { requestBase } from "../utils/constants";
 import { useFavorited, useUserState } from "../context";
 
 export const ListOfFavorites = ({ navigation }) => {
-  const [cardList, setCardList] = useState(null);
   const userState = useUserState();
   const { state: favoritedData } = useFavorited(userState);
 
-  if (!cardList) {
+  if (!favoritedData) {
     return <AppLoading />;
   }
-
-  console.log("not! HAPPY!", favoritedData);
 
   const renderItem = ({ item }) => {
     return <Card item={item} navigation={navigation} />;
@@ -31,6 +27,7 @@ export const ListOfFavorites = ({ navigation }) => {
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}
         snapToInterval={312}
+        inverted
         decelerationRate='fast'
       />
     </View>

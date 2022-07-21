@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, FlatList, Image, useWindowDimensions } from "react-native";
-import { useFavorited, useUserState } from "../context";
+import { requestBase } from "../utils/constants";
 
 export const AddedImages = () => {
   const imageWidth = useWindowDimensions().width * 0.4;
-  const userState = useUserState();
-  const { state: johnsData } = useFavorited(userState);
+  const [addedImagesData, setAddedImagesData] = useState(null);
+  async function fetchAddedImagesData() {
+    const response = await fetch(requestBase + "/john_doe/addedImages.json");
+    setAddedImagesData(await response.json());
+  }
+
+  useEffect(() => {
+    if (!addedImagesData) {
+      fetchAddedImagesData();
+    }
+  }, [addedImagesData]);
 
   const renderItem = ({ item }) => {
     return (
@@ -31,7 +40,7 @@ export const AddedImages = () => {
       }}
     >
       <FlatList
-        data={johnsData.addedImages}
+        data={addedImagesData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}

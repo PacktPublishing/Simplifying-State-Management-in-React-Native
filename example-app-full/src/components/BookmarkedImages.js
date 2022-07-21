@@ -1,19 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import { View, FlatList, Image, useWindowDimensions } from "react-native";
-import { useFavorited, useUserState } from "../context";
+import { useBookmarks, useUserState } from "../context";
 
-export const FavoritedImages = () => {
+export const BookmarkedImages = () => {
   const imageWidth = useWindowDimensions().width * 0.4;
   const userState = useUserState();
-  const { state: johnsData } = useFavorited(userState);
+  const { bookmarksData } = useBookmarks(userState);
   const flatListRef = useRef(null);
-
-  useEffect(() => {
-    const currentTopIndex = johnsData.likedImages.length - 1;
-    flatListRef.current.scrollToIndex({
-      index: currentTopIndex,
-    });
-  }, [johnsData]);
 
   const ITEM_HEIGHT = 130;
 
@@ -42,7 +35,7 @@ export const FavoritedImages = () => {
       }}
     >
       <FlatList
-        data={johnsData.likedImages}
+        data={bookmarksData}
         ref={flatListRef}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

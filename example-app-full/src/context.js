@@ -43,8 +43,8 @@ function ConversationContextProvider({ children }) {
   return (
     <ConversationContext.Provider
       value={{
-        conversationId: conversationId,
-        setConversationId: setConversationId,
+        conversationId,
+        setConversationId,
       }}
     >
       {children}
@@ -84,12 +84,8 @@ function favoritesReducer(state, action) {
       return action.payload;
     }
     case "add_like": {
-      let updatedLikedImages = state.likedImages;
-      updatedLikedImages.push(action.payload);
-      return {
-        ...state,
-        likedImages: updatedLikedImages,
-      };
+      const newLikedImage = action.payload;
+      return [...state, newLikedImage];
     }
     case "remove_like": {
       return state;
@@ -105,7 +101,7 @@ function FavoritedContextProvider({ children }) {
   const [state, dispatch] = useReducer(favoritesReducer, loggedInData);
 
   async function fetchLoggedInData() {
-    const response = await fetch(requestBase + "/john_doe.json");
+    const response = await fetch(requestBase + "/john_doe/likedImages.json");
     setLoggedInData(await response.json());
   }
 
@@ -141,3 +137,44 @@ function useFavorited(userLoggedIn) {
 }
 
 export { FavoritedContextProvider, useFavorited };
+
+const BookmarksContext = React.createContext();
+
+function BookmarksContextProvider({ children }) {
+  const [bookmarksData, setBookmarksData] = useState(null);
+  async function fetchBookmarkData() {
+    const response = await fetch(
+      requestBase + "/john_doe/bookmarkedImages.json"
+    );
+    setBookmarksData(await response.json());
+  }
+
+  useEffect(() => {
+    if (!bookmarksData) {
+      fetchBookmarkData();
+    }
+  }, [bookmarksData]);
+
+  return (
+    <BookmarksContext.Provider
+      value={{
+        bookmarksData,
+        setBookmarksData,
+      }}
+    >
+      {children}
+    </BookmarksContext.Provider>
+  );
+}
+
+function useBookmarks() {
+  const context = React.useContext(BookmarksContext);
+  if (context === undefined) {
+    throw new Error(
+      "useBookmarks must be used within a BookmarksContextProvider"
+    );
+  }
+  return context;
+}
+
+export { BookmarksContextProvider, useBookmarks };
