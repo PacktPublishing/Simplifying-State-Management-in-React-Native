@@ -4,7 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const AvatarModal = ({ navigation, route }) => {
-  console.log("do i have stuff?", route.params);
   return (
     <SafeAreaView style={{ flex: 1, marginTop: -20 }}>
       <View>

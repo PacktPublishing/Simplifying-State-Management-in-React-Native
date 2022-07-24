@@ -88,7 +88,10 @@ function favoritesReducer(state, action) {
       return [...state, newLikedImage];
     }
     case "remove_like": {
-      return state;
+      const stateWithoutLikedImage = state.filter(
+        (item) => item !== action.payload
+      );
+      return stateWithoutLikedImage;
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useUserState, useFavorited } from "../context";
+import { likeImage, unLikeImage } from "../../reducers/likedImages";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ImageDetailsModal = ({ navigation, route }) => {
-  const userState = useUserState();
-  const { dispatch } = useFavorited(userState);
+  const { likedImages } = useSelector((state) => state.likedImages);
+  const [isCurrentImageLiked, setIsCurrentImageLiked] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const checkIfLiked =
+      likedImages?.filter(
+        (favoritedImg) => favoritedImg.itemId === route.params.imageItem.itemId
+      ).length > 0;
+    setIsCurrentImageLiked(checkIfLiked);
+  }, [likedImages]);
+
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 30 }}>
       <View
@@ -108,14 +119,19 @@ export const ImageDetailsModal = ({ navigation, route }) => {
         }}
       >
         <Pressable
-          onPress={() =>
-            dispatch({
-              type: "add_like",
-              payload: route.params.imageItem,
-            })
-          }
+          onPress={() => {
+            if (isCurrentImageLiked) {
+              dispatch(unLikeImage(route.params.imageItem));
+            } else {
+              dispatch(likeImage(route.params.imageItem));
+            }
+          }}
         >
-          <Ionicons name='heart-outline' size={40} color='#000000' />
+          <Ionicons
+            name={isCurrentImageLiked ? "heart" : "heart-outline"}
+            size={40}
+            color='#000000'
+          />
         </Pressable>
         <Pressable onPress={() => console.log("yo! pressed bookmark")}>
           <Ionicons name='bookmark-outline' size={40} color='#000000' />
