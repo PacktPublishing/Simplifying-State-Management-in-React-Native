@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import { View, FlatList } from "react-native";
 import { Card } from "../components/Card";
 import AppLoading from "expo-app-loading";
-import { useFavorited, useUserState } from "../context";
+import { store } from '../../store';
 
 export const ListOfFavorites = ({ navigation }) => {
-  const userState = useUserState();
-  const { state: favoritedData } = useFavorited(userState);
   const [imageList, setImageList] = useState();
 
-  if (!favoritedData) {
+  const likedImages = store.likedImages;
+
+  if (!likedImages) {
     return <AppLoading />;
   }
 
   useEffect(() => {
-    const reversedImages = [...favoritedData].reverse();
+    const reversedImages = [...likedImages].reverse();
     setImageList(reversedImages);
-  }, [favoritedData]);
+  }, [likedImages]);
 
   const renderItem = ({ item }) => {
     return <Card item={item} navigation={navigation} />;
