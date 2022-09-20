@@ -1,16 +1,17 @@
-import React from "react";
-import { View, FlatList } from "react-native";
+import React, {useState, useEffect} from "react";
+import { View, FlatList} from "react-native";
 import { Card } from "../components/Card";
-import AppLoading from "expo-app-loading";
-import { useFavorited, useUserState } from "../context";
+import { useXStateContext } from "../context";
+import { useActor } from '@xstate/react';
 
 export const ListOfFavorites = ({ navigation }) => {
-  const userState = useUserState();
-  const { state: favoritedData } = useFavorited(userState);
+  const globalServices = useXStateContext();
+  const [state] = useActor(globalServices.globalAppService);
+  const [imageData, updateImageData] = useState([])
 
-  if (!favoritedData) {
-    return <AppLoading />;
-  }
+  useEffect(() => {
+    updateImageData(state.context.likedImages);
+  },[state.context.likedImages])
 
   const renderItem = ({ item }) => {
     return <Card item={item} navigation={navigation} />;
@@ -22,7 +23,7 @@ export const ListOfFavorites = ({ navigation }) => {
       }}
     >
       <FlatList
-        data={favoritedData}
+        data={imageData}
         renderItem={renderItem}
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}

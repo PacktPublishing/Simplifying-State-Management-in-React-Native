@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect, useReducer, createContext } from "react";
 import { requestBase } from "./utils/constants";
 
 const UserListContext = React.createContext();
@@ -181,3 +181,28 @@ function useBookmarks() {
 }
 
 export { BookmarksContextProvider, useBookmarks };
+
+import { useInterpret } from '@xstate/react';
+import { globalAppMachine } from './machines/stateMachine';
+
+export const GlobalStateContext = createContext({});
+
+export const useXStateContext = () => {
+  const context = React.useContext(GlobalStateContext);
+  if (context === undefined) {
+    throw new Error(
+      "useConversations must be used within a ConversationContextProvider"
+    );
+  }
+  return context;
+}
+
+export const GlobalStateProvider = (props) => {
+  const globalAppService = useInterpret(globalAppMachine);
+
+  return (
+    <GlobalStateContext.Provider value={{ globalAppService }}>
+      {props.children}
+    </GlobalStateContext.Provider>
+  );
+};

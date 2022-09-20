@@ -19,7 +19,9 @@ import {
   FavoritedContextProvider,
   BookmarksContextProvider,
   UserStateContext,
+  GlobalStateProvider
 } from "./src/context";
+
 
 const Stack = createStackNavigator();
 
@@ -45,48 +47,50 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <UserStateContext.Provider value={userLoggedIn}>
-        <UserListContextProvider>
-          <FavoritedContextProvider>
-            <BookmarksContextProvider>
-              <NavigationContainer theme={MyTheme}>
-                <Stack.Navigator>
-                  <Stack.Group>
-                    {!userLoggedIn ? (
-                      <Stack.Screen name='Login' component={Login} />
-                    ) : (
-                      <>
-                        <Stack.Screen
-                          name='Home'
-                          component={Home}
-                          options={{ headerShown: false }}
-                        />
-                        <Stack.Screen
-                          name='ConversationsNav'
-                          component={ConversationsNavigation}
-                          options={{ headerShown: false }}
-                        />
-                      </>
-                    )}
-                  </Stack.Group>
-                  <Stack.Group screenOptions={{ presentation: "modal" }}>
-                    <Stack.Screen
-                      name='UserDetailsModal'
-                      component={UserDetailsModal}
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                      name='ImageDetailsModal'
-                      component={ImageDetailsModal}
-                      options={{ headerShown: false }}
-                    />
-                  </Stack.Group>
-                </Stack.Navigator>
-              </NavigationContainer>
-            </BookmarksContextProvider>
-          </FavoritedContextProvider>
-        </UserListContextProvider>
-      </UserStateContext.Provider>
+      <GlobalStateProvider>
+        <UserStateContext.Provider value={userLoggedIn}>
+          <UserListContextProvider>
+            <FavoritedContextProvider>
+              <BookmarksContextProvider>
+                <NavigationContainer theme={MyTheme}>
+                  <Stack.Navigator>
+                    <Stack.Group>
+                      {!userLoggedIn ? (
+                        <Stack.Screen name='Login' component={Login} />
+                      ) : (
+                        <>
+                          <Stack.Screen
+                            name='Home'
+                            component={Home}
+                            options={{ headerShown: false }}
+                          />
+                          <Stack.Screen
+                            name='ConversationsNav'
+                            component={ConversationsNavigation}
+                            options={{ headerShown: false }}
+                          />
+                        </>
+                      )}
+                    </Stack.Group>
+                    <Stack.Group screenOptions={{ presentation: "modal" }}>
+                      <Stack.Screen
+                        name='UserDetailsModal'
+                        component={UserDetailsModal}
+                        options={{ headerShown: false }}
+                      />
+                      <Stack.Screen
+                        name='ImageDetailsModal'
+                        component={ImageDetailsModal}
+                        options={{ headerShown: false }}
+                      />
+                    </Stack.Group>
+                  </Stack.Navigator>
+                </NavigationContainer>
+              </BookmarksContextProvider>
+            </FavoritedContextProvider>
+          </UserListContextProvider>
+        </UserStateContext.Provider>
+      </GlobalStateProvider>
     </SafeAreaProvider>
   );
 }

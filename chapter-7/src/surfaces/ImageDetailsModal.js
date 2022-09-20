@@ -2,20 +2,37 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useUserState, useFavorited } from "../context";
+import { useXStateContext } from "../context";
+import { useActor, useSelector } from "@xstate/react";
+
+const isImageLikedSelector = (state) => {
+  if (state.context.currentImage === null) {
+    return;
+  }
+  const checkInImagesArray = state.context.likedImages.find(
+    (image) => image.itemId === state.context.currentImage.itemId
+  );
+
+  return !!checkInImagesArray;
+};
 
 export const ImageDetailsModal = ({ navigation, route }) => {
-  const userState = useUserState();
-  const { state: favoritedArray, dispatch } = useFavorited(userState);
-  const [isCurrentImageLiked, setIsCurrentImageLiked] = useState(false);
+  const globalServices = useXStateContext();
+  const { send } = globalServices.globalAppService;
+  const isImageLiked = useSelector(
+    globalServices.globalAppService,
+    isImageLikedSelector
+  );
 
   useEffect(() => {
-    const checkIfLiked =
-      favoritedArray?.filter(
-        (favoritedImg) => favoritedImg.itemId === route.params.imageItem.itemId
-      ).length > 0;
-    setIsCurrentImageLiked(checkIfLiked);
-  }, [favoritedArray]);
+    send({
+      type: "MODAL_OPEN",
+      payload: route.params.imageItem,
+    });
+    return () => {
+      send("MODAL_CLOSE", {});
+    };
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, paddingTop: 30 }}>
@@ -119,21 +136,18 @@ export const ImageDetailsModal = ({ navigation, route }) => {
       >
         <Pressable
           onPress={() => {
-            if (isCurrentImageLiked) {
-              dispatch({
-                type: "remove_like",
-                payload: route.params.imageItem,
-              });
+            if (isImageLiked) {
+              // dispatch({
+              //   type: "remove_like",
+              //   payload: route.params.imageItem,
+              // });
             } else {
-              dispatch({
-                type: "add_like",
-                payload: route.params.imageItem,
-              });
+              send({ type: "LIKE", payload: [route.params.imageItem] });
             }
           }}
         >
           <Ionicons
-            name={isCurrentImageLiked ? "heart" : "heart-outline"}
+            name={isImageLiked ? "heart" : "heart-outline"}
             size={40}
             color='#000000'
           />
