@@ -32,7 +32,11 @@ export const ListOfCards = () => {
       }}
     >
       <FlatList
+<<<<<<< HEAD:chapter-4/src/components/ListOfCards.js
         data={cardList.listOfitems}
+=======
+        data={cardList.reverse()}
+>>>>>>> minor fix:chapter-3/src/components/ListOfFavorites.js
         renderItem={renderItem}
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}
