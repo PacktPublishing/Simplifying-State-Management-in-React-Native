@@ -29,7 +29,7 @@ export const ListOfFavorites = () => {
       }}
     >
       <FlatList
-        data={cardList.listOfitems.reverse()}
+        data={cardList.reverse()}
         renderItem={renderItem}
         keyExtractor={(item) => item.itemId}
         showsVerticalScrollIndicator={false}
