@@ -23,7 +23,7 @@ export const ListHeaderComponent = () => {
             alignItems: "center",
           }}
         >
-          <Ionicons name="add" size={30} color="#000000" />
+          <Ionicons name='add' size={30} color='#000000' />
         </LinearGradient>
       </View>
     </Pressable>
