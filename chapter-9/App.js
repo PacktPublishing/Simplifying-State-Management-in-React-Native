@@ -20,8 +20,17 @@ import {
   BookmarksContextProvider,
   UserStateContext,
 } from "./src/context";
+import {
+  useQuery,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import { requestBase } from "./src/utils/constants";
+
 
 const Stack = createStackNavigator();
+// Create a client
+const queryClient = new QueryClient()
 
 const MyTheme = {
   ...DefaultTheme,
@@ -31,7 +40,14 @@ const MyTheme = {
   },
 };
 
-export default function App() {
+const fetchLoginStatus = async () => {
+    const response = await fetch(requestBase + "/loginState.json");
+    return response.json();
+  }
+
+
+const AppWrapped = () => {
+  const { data } = useQuery(['loginState'], fetchLoginStatus);
   const [userLoggedIn, setUserLoggedIn] = useState(true);
 
   let [fontsLoaded] = useFonts({
@@ -52,7 +68,7 @@ export default function App() {
               <NavigationContainer theme={MyTheme}>
                 <Stack.Navigator>
                   <Stack.Group>
-                    {!userLoggedIn ? (
+                    {!data?.loggedIn ? (
                       <Stack.Screen name='Login' component={Login} />
                     ) : (
                       <>
@@ -90,3 +106,12 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
+
+
+export default function App() {
+    return (
+      <QueryClientProvider client={queryClient}>
+      <AppWrapped />
+    </QueryClientProvider>
+  )
+};
