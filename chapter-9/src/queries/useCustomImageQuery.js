@@ -1,18 +1,31 @@
-import { useQuery } from "react-query";
-import { requestBase } from "./src/utils/constants";
+import { useQuery } from "@tanstack/react-query";
+import { requestBase } from "../utils/constants";
 
-const fetchLoginStatus = async () => {
-  const response = await fetch(requestBase + "/loginState.json");
+const getImages = async () => {
+  const response = await fetch(requestBase + "/john_doe/likedImages.json");
   return response.json();
 }
-  
-const getPostById = async (postId) => {
-  const { data } = await axios.get(
-    `https://jsonplaceholder.typicode.com/posts/${postId}`
-  );
-  return data;
+
+export const useCustomImageQuery = () => {
+  const { data } = useQuery(['loginState']);
+
+  return useQuery(
+    ["imageList"],
+    getImages, 
+    {
+    enabled: data?.loggedIn,
+  });
 };
 
-export default function usePost(postId) {
-  return useQuery(["post", postId], () => getPostById(postId));
-}
+  
+// const getPostById = async (postId) => {
+//   const { data } = await axios.get(
+//     `https://jsonplaceholder.typicode.com/posts/${postId}`
+//   );
+//   return data;
+// };
+
+
+// export default function usePost(postId) {
+//   return useQuery(["post", postId], () => getPostById(postId));
+// }
