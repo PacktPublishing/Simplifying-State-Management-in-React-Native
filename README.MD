@@ -44,10 +44,10 @@ With the following software and hardware list you can run all code files present
 ### Software and Hardware List
 | Chapter | Software/Hardware required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
-| 1-14 | Expo 44| Windows Mac OS X and Linux  |
-| 1-14 | JavaScript (ECMAScript 2020)| Windows Mac OS X and Linux  |
-| 1-14 | ReactJS v18 and up| Windows Mac OS X and Linux  |
-| 1-14 | React Native| Windows Mac OS X and Linux  |
+| 1-10 | Expo 44| Windows Mac OS X and Linux  |
+| 1-10 | JavaScript (ECMAScript 2020)| Windows Mac OS X and Linux  |
+| 1-10 | ReactJS v18 and up| Windows Mac OS X and Linux  |
+| 1-10 | React Native| Windows Mac OS X and Linux  |
 
 ### Funbook App
 
