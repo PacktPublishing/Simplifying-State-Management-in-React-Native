@@ -65,7 +65,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ### Related products
 * Professional React Native [[Packt]](https://www.packtpub.com/product/professional-react-native/9781800563681) [[Amazon]](https://www.amazon.com/Professional-React-Native-cross-platform-production-ready/dp/180056368X)
 
-* React and React Native - Fourth Edition [[Packt]](https://www.packtpub.com/product/react-and-react-native-fourth-edition/9781803231280) [[Amazon]](https://www.amazon.com/Professional-React-Native-cross-platform-production-ready/dp/180056368X)
+* React and React Native - Fourth Edition [[Packt]](https://www.packtpub.com/product/react-and-react-native-fourth-edition/9781803231280) [[Amazon]](https://www.amazon.com/React-Native-cross-platform-JavaScript-applications/dp/1803231289)
 
 
 ## Get to Know the Author
