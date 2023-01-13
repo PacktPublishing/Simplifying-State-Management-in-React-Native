@@ -2,7 +2,13 @@
 
 This is an example app built for the Simplifying State Management in React Native book.
 
-The `main` branch holds only the basic app setup.
+### Running the App
+
+Run `yarn install` followed by `yarn start`. Choose how you would like to preview your app by running it in the simulator or on your device.
+
+If you haven't yet done so, you may need to run `yarn install` in the root folder of this repo.
+
+### Attributions
 
 This app uses a free design kit: https://www.pixeltrue.com/free-ui-kits/social-media-app :heart: :fire:
 
@@ -17,3 +23,9 @@ https://unsplash.com/photos/rZMiCdPAlss
 https://unsplash.com/photos/Y-8-JmHeWVg
 
 Thank you! :raised-hands:
+
+### What to expect
+
+If you run the app from this folder it should look like this:
+
+[iPhone 11 simulator - chapter 3](chapter-3.png)
