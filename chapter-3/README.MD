@@ -28,4 +28,4 @@ Thank you! :raised-hands:
 
 If you run the app from this folder it should look like this:
 
-![iPhone 11 simulator - chapter 3](chapter-3.png | width=200)
+<img src="chapter-3.png" width="200">
