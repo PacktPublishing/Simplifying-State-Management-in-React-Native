@@ -22,7 +22,7 @@ https://unsplash.com/photos/8i7F4BadwNo
 https://unsplash.com/photos/rZMiCdPAlss
 https://unsplash.com/photos/Y-8-JmHeWVg
 
-Thank you! :raised-hands:
+Thank you! :heart:
 
 ### What to expect
 

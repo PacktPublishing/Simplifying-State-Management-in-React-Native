@@ -79,7 +79,7 @@ export const Profile = () => {
               alignSelf: "center",
             }}
             source={{
-              uri: "https://raw.githubusercontent.com/PacktPublishing/Simplifying-State-Management-in-React-Native/chapter-3/assets/avatars/3.png",
+              uri: "https://github.com/PacktPublishing/Simplifying-State-Management-in-React-Native/blob/cd04c474053275d4e22a8173695a2b972d012567/chapter-4/assets/avatars/3.png",
             }}
           />
         </View>

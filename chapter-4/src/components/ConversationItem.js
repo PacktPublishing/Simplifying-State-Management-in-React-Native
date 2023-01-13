@@ -10,6 +10,8 @@ export const ConversationItem = ({ navigation, item }) => {
       name: currentUser[0].name,
       avatar: currentUser[0].url,
     });
+
+    console.log("hi, messed smth here", currentUser);
   };
   return (
     <ConversationContext.Consumer>
