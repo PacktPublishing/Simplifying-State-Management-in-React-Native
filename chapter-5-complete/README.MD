@@ -1,3 +1,7 @@
+# WIP 
+
+Changes in this part of the chapter are not complete yet.
+
 # Funbook App
 
 This is an example app built for the Simplifying State Management in React Native book.
