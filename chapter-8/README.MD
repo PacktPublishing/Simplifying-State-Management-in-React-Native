@@ -6,6 +6,13 @@ The `main` branch holds only the basic app setup.
 
 This app uses a free design kit: https://www.pixeltrue.com/free-ui-kits/social-media-app :heart: :fire:
 
+## Jotai
+
+This version of the app uses [Jotai](https://jotai.org/).
+
+> It’s scalable from a simple React.useState replacement to a large-scale application with complex requirements.
+
+
 Unsplash images used for this example app:
 https://unsplash.com/photos/29mFwu6BENc
 https://unsplash.com/photos/LHOQqONumTE

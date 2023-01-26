@@ -10,6 +10,19 @@ The `main` branch holds only the basic app setup.
 
 This app uses a free design kit: https://www.pixeltrue.com/free-ui-kits/social-media-app :heart: :fire:
 
+## Jotai
+
+This version of the app uses [Jotai](https://jotai.org/).
+
+> No extra re-renders, state resides within React, and you get the full benefits from suspense and concurrent features.
+> It’s scalable from a simple React.useState replacement to a large-scale application with complex requirements.
+
+## Running the app
+
+In the main folder run `yarn` - so that all dependencies are installed.
+
+In this folder (`chapter-8-complete`) run `yarn start` (or `expo start` if you have Expo CLI installed). Follow console prompts to run your Expo app in an emulator or device.
+
 Unsplash images used for this example app:
 https://unsplash.com/photos/29mFwu6BENc
 https://unsplash.com/photos/LHOQqONumTE

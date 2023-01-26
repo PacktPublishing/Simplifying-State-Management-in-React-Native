@@ -42,6 +42,8 @@ class Welcome extends React.Component {
 **Following is what you need for this book:**
 This book is for junior developers, React Native developers, and mobile app developers who are already using React Native, but are also on the lookout for advice and for a broader view to manage the state and changes in their applications. Basic knowledge of ReactJS and React Native, as well as familiarity with JavaScript and general mobile app development concepts are needed to grasp the topics covered in this book.
 
+We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://packt.link/wv4Mk).
+
 With the following software and hardware list you can run all code files present in the book (Chapter 1-10).
 
 ### Software and Hardware List
@@ -52,18 +54,23 @@ With the following software and hardware list you can run all code files present
 | 1-10    | JavaScript (ECMAScript 2020) | Windows Mac OS X and Linux |
 | 1-10    | ReactJS v18 and up           | Windows Mac OS X and Linux |
 | 1-10    | React Native                 | Windows Mac OS X and Linux |
+| 1-10    | Node v14 and up              | Windows Mac OS X and Linux |
 
 ### Funbook App
 
 This is an example app built for the Simplifying State Management in React Native book.
 
+This app is built with [Expo](https://docs.expo.dev/)
+
 ### Running the App
 
-Choose which version of the app you would like to run (for example chapter-3, chapter-4 or example-app-full). Go into the necessary folder and run `yarn install` followed by `yarn start`. Choose how you would like to preview your app by running it in the simulator or on your device.
+Start by running `yarn` in the main directory.
+
+Choose which version of the app you would like to run (for example chapter-3, chapter-4 or example-app-full). Go into the necessary folder and run `yarn start`. Choose how you would like to preview your app by running it in the simulator or on your device.
 
 This app uses a free design kit: https://www.pixeltrue.com/free-ui-kits/social-media-app :heart: :fire:
 
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://packt.link/wv4Mk).
+
 
 ### Related products
 
