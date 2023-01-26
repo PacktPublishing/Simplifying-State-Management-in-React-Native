@@ -15,10 +15,8 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import {
-  UserListContextProvider,
   FavoritedContextProvider,
   BookmarksContextProvider,
-  UserStateContext,
 } from "./src/context";
 import { fetchLoginStateAtom } from "./src/atoms/loginStateAtom";
 import { useAtom } from "jotai";
@@ -48,48 +46,46 @@ const AppWrapped = () => {
 
   return (
     <SafeAreaProvider>
-      <UserListContextProvider>
-        <FavoritedContextProvider>
-          <BookmarksContextProvider>
-            <Suspense fallback={<AppLoading />}>
-              <NavigationContainer theme={MyTheme}>
-                <Stack.Navigator>
-                  <Stack.Group>
-                    {!userLoggedIn ? (
-                      <Stack.Screen name='Login' component={Login} />
-                    ) : (
-                      <>
-                        <Stack.Screen
-                          name='Home'
-                          component={Home}
-                          options={{ headerShown: false }}
-                        />
-                        <Stack.Screen
-                          name='ConversationsNav'
-                          component={ConversationsNavigation}
-                          options={{ headerShown: false }}
-                        />
-                      </>
-                    )}
-                  </Stack.Group>
-                  <Stack.Group screenOptions={{ presentation: "modal" }}>
-                    <Stack.Screen
-                      name='UserDetailsModal'
-                      component={UserDetailsModal}
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                      name='ImageDetailsModal'
-                      component={ImageDetailsModal}
-                      options={{ headerShown: false }}
-                    />
-                  </Stack.Group>
-                </Stack.Navigator>
-              </NavigationContainer>
-            </Suspense>
-          </BookmarksContextProvider>
-        </FavoritedContextProvider>
-      </UserListContextProvider>
+      <FavoritedContextProvider>
+        <BookmarksContextProvider>
+          <Suspense fallback={<AppLoading />}>
+            <NavigationContainer theme={MyTheme}>
+              <Stack.Navigator>
+                <Stack.Group>
+                  {!userLoggedIn ? (
+                    <Stack.Screen name='Login' component={Login} />
+                  ) : (
+                    <>
+                      <Stack.Screen
+                        name='Home'
+                        component={Home}
+                        options={{ headerShown: false }}
+                      />
+                      <Stack.Screen
+                        name='ConversationsNav'
+                        component={ConversationsNavigation}
+                        options={{ headerShown: false }}
+                      />
+                    </>
+                  )}
+                </Stack.Group>
+                <Stack.Group screenOptions={{ presentation: "modal" }}>
+                  <Stack.Screen
+                    name='UserDetailsModal'
+                    component={UserDetailsModal}
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name='ImageDetailsModal'
+                    component={ImageDetailsModal}
+                    options={{ headerShown: false }}
+                  />
+                </Stack.Group>
+              </Stack.Navigator>
+            </NavigationContainer>
+          </Suspense>
+        </BookmarksContextProvider>
+      </FavoritedContextProvider>
     </SafeAreaProvider>
   );
 };

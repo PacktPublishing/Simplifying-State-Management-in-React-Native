@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Pressable, Image, Text } from "react-native";
-import { useUserList, useConversations } from "../context";
+import { useConversations } from "../context";
+import { useAtom } from "jotai";
+import { userListAtom } from "../atoms/userListAtom";
 
 export const ConversationItem = ({ navigation, item }) => {
-  const userList = useUserList();
+  const [userList] = useAtom(userListAtom);
   const currentUser = userList?.filter((user) => user.id === item.userId) || [];
   const { setConversationId } = useConversations();
 

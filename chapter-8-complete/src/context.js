@@ -1,40 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { requestBase } from "./utils/constants";
 
-const UserListContext = React.createContext();
-
-function UserListContextProvider({ children }) {
-  const [userList, setUserList] = useState(null);
-  async function fetchUserData() {
-    const response = await fetch(requestBase + "/users.json");
-    setUserList(await response.json());
-  }
-
-  useEffect(() => {
-    if (!userList) {
-      fetchUserData();
-    }
-  }, [userList]);
-
-  return (
-    <UserListContext.Provider value={userList}>
-      {children}
-    </UserListContext.Provider>
-  );
-}
-
-function useUserList() {
-  const context = React.useContext(UserListContext);
-  if (context === undefined) {
-    throw new Error(
-      "useUserList must be used within a UserListContextProvider"
-    );
-  }
-  return context;
-}
-
-export { UserListContextProvider, useUserList };
-
 const ConversationContext = React.createContext();
 
 function ConversationContextProvider({ children }) {
