@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Login } from "./src/surfaces/Login";
@@ -20,12 +20,8 @@ import {
   BookmarksContextProvider,
   UserStateContext,
 } from "./src/context";
-import {
-  fetchImagesAtom,
-  updateImagesAtom,
-  // allImages,
-} from "./src/atoms/fetchImagesAtom";
-import { Provider } from "jotai";
+import { fetchLoginStateAtom } from "./src/atoms/loginStateAtom";
+import { useAtom } from "jotai";
 
 const Stack = createStackNavigator();
 
@@ -37,9 +33,9 @@ const MyTheme = {
   },
 };
 
-export default function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(true);
-  // const [json] = useAtom(fetchImagesAtom);
+const AppWrapped = () => {
+  const [json] = useAtom(fetchLoginStateAtom);
+  const [userLoggedIn] = useState(json.loggedIn);
 
   let [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -52,50 +48,56 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <UserStateContext.Provider value={userLoggedIn}>
-        <UserListContextProvider>
-          <FavoritedContextProvider>
-            <BookmarksContextProvider>
-              <Suspense fallback={<AppLoading />}>
-                <NavigationContainer theme={MyTheme}>
-                  <Stack.Navigator>
-                    <Stack.Group>
-                      {!userLoggedIn ? (
-                        <Stack.Screen name='Login' component={Login} />
-                      ) : (
-                        <>
-                          <Stack.Screen
-                            name='Home'
-                            component={Home}
-                            options={{ headerShown: false }}
-                          />
-                          <Stack.Screen
-                            name='ConversationsNav'
-                            component={ConversationsNavigation}
-                            options={{ headerShown: false }}
-                          />
-                        </>
-                      )}
-                    </Stack.Group>
-                    <Stack.Group screenOptions={{ presentation: "modal" }}>
-                      <Stack.Screen
-                        name='UserDetailsModal'
-                        component={UserDetailsModal}
-                        options={{ headerShown: false }}
-                      />
-                      <Stack.Screen
-                        name='ImageDetailsModal'
-                        component={ImageDetailsModal}
-                        options={{ headerShown: false }}
-                      />
-                    </Stack.Group>
-                  </Stack.Navigator>
-                </NavigationContainer>
-              </Suspense>
-            </BookmarksContextProvider>
-          </FavoritedContextProvider>
-        </UserListContextProvider>
-      </UserStateContext.Provider>
+      <UserListContextProvider>
+        <FavoritedContextProvider>
+          <BookmarksContextProvider>
+            <Suspense fallback={<AppLoading />}>
+              <NavigationContainer theme={MyTheme}>
+                <Stack.Navigator>
+                  <Stack.Group>
+                    {!userLoggedIn ? (
+                      <Stack.Screen name='Login' component={Login} />
+                    ) : (
+                      <>
+                        <Stack.Screen
+                          name='Home'
+                          component={Home}
+                          options={{ headerShown: false }}
+                        />
+                        <Stack.Screen
+                          name='ConversationsNav'
+                          component={ConversationsNavigation}
+                          options={{ headerShown: false }}
+                        />
+                      </>
+                    )}
+                  </Stack.Group>
+                  <Stack.Group screenOptions={{ presentation: "modal" }}>
+                    <Stack.Screen
+                      name='UserDetailsModal'
+                      component={UserDetailsModal}
+                      options={{ headerShown: false }}
+                    />
+                    <Stack.Screen
+                      name='ImageDetailsModal'
+                      component={ImageDetailsModal}
+                      options={{ headerShown: false }}
+                    />
+                  </Stack.Group>
+                </Stack.Navigator>
+              </NavigationContainer>
+            </Suspense>
+          </BookmarksContextProvider>
+        </FavoritedContextProvider>
+      </UserListContextProvider>
     </SafeAreaProvider>
+  );
+};
+
+export default function App() {
+  return (
+    <Suspense fallback={<AppLoading />}>
+      <AppWrapped />
+    </Suspense>
   );
 }

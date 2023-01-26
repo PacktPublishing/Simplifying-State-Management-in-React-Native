@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { View, FlatList } from "react-native";
 import { Card } from "../components/Card";
 import AppLoading from "expo-app-loading";

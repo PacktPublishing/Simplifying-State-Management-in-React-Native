@@ -1,9 +1,11 @@
 import React from "react";
 import { View, Text, Image, Pressable } from "react-native";
-import { useUserList } from "../context";
+import { useAtom } from "jotai";
+import { userListAtom } from "../atoms/userListAtom";
 
 export const Card = ({ item, navigation }) => {
-  const userList = useUserList();
+  const [userList] = useAtom(userListAtom);
+
   const currentUser =
     userList?.filter((user) => user.id === item.authorId) || [];
   return (

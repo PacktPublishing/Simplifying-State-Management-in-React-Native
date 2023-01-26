@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, Image, View, Text } from "react-native";
+import React, { useState, useEffect, useMemo } from "react";
+import { FlatList, Image, View } from "react-native";
 import AppLoading from "expo-app-loading";
 import { requestBase } from "../utils/constants";
 import { useWindowDimensions } from "react-native";
 
 export const UserDetailsModalImages = () => {
-  const randomImageSet = Math.round(Math.random() * 4);
+  const randomImageSet = useMemo(() => Math.round(Math.random() * 4));
+  const safeRandomImageSet = randomImageSet === 0 ? 1 : randomImageSet;
   const [imageList, setImageList] = useState(null);
   const { height, width } = useWindowDimensions();
 
   async function fetchImageData() {
     const response = await fetch(
-      requestBase + "/userImages/" + randomImageSet + ".json"
+      requestBase + "/userImages/" + safeRandomImageSet + ".json"
     );
     setImageList(await response.json());
   }

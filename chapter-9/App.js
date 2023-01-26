@@ -111,7 +111,7 @@ const AppWrapped = () => {
 export default function App() {
     return (
       <QueryClientProvider client={queryClient}>
-      <AppWrapped />
-    </QueryClientProvider>
+        <AppWrapped />
+      </QueryClientProvider>
   )
 };

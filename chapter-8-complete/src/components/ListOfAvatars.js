@@ -1,10 +1,12 @@
 import React from "react";
 import { View, FlatList, Pressable, Image } from "react-native";
 import { ListHeaderComponent } from "./ListHeaderComponent";
-import { useUserList } from "../context";
+import { useAtom } from "jotai";
+import { userListAtom } from "../atoms/userListAtom";
 
 export const ListOfAvatars = ({ navigation }) => {
-  const userList = useUserList();
+  const [userList] = useAtom(userListAtom);
+
   const renderItem = ({ item }) => {
     return (
       <Pressable
